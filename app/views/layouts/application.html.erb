@@ -7,8 +7,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <header><h1>NEWSREADER</h1></header>
+  <% if flash %>
+    <p><%= flash[:notice] %></p>
+  <% end %>
 
-<%= yield %>
+  <% if current_user %>
+    <%= button_to "Logout", session_url, :method => :delete %>
+  <% end %>
+
+  <%= yield %>
 
 </body>
 </html>

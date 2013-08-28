@@ -5,7 +5,7 @@ window.NR = {
   Routers: {},
   initialize: function() {
     // alert('Hello from Backbone!');
-    var $rootEl = $("body");
+    var $rootEl = $("#content");
     //get collection
     //TODO: make this local later!!
     feeds = new NR.Collections.Feeds;
