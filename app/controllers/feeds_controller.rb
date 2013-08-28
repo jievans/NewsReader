@@ -1,5 +1,6 @@
 class FeedsController < ApplicationController
   def index
+    @feeds = Feed.all
     respond_to do |format|
       format.html { render :index }
       format.json { render "index.rabl" }
@@ -8,7 +9,22 @@ class FeedsController < ApplicationController
 
   def show
     @feed = Feed.find(params[:id])
-    render :show
+    #reload if over 2 mins. since update
+    current = Time.now()
+    begin
+    if (current - @feed.updated_at) > 120
+      @feed.reload
+    end
+  rescue => e
+    puts "rescued the RSS error-----
+    error message: #{e.message}"
+  end
+    # render :show
+
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render "show.rabl" }
+    end
   end
 
   def create

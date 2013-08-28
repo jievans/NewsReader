@@ -1,5 +1,5 @@
-model @feed
+object @feed
 attributes :id, :title, :url
 child(:entries) do
-  attribute :id, :title, :published_at
+  attributes :id, :title, :published_at, :link
 end

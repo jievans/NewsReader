@@ -7,7 +7,8 @@ NR.Routers.NewsRouter = Backbone.Router.extend({
 
   routes: {
     "": "index",
-    "feeds/:id": "show"
+    "feeds/:id": "show",
+    "feeds/:feed_id/entries/:entry_id": "showEntry",
   },
 
   index: function(){
@@ -18,7 +19,19 @@ NR.Routers.NewsRouter = Backbone.Router.extend({
 
   show: function(id){
     var theModel = this.collection.get(id);
-    var showView = new NR.Views.FeedShowView({model: theModel});
+    var that = this;
+    theModel.fetch(
+      {success: function(model){
+        var showView = new NR.Views.FeedShowView({model: model});
+        that.$rootEl.html(showView.render().$el);
+      }
+      });
+  },
+
+  showEntry: function(feedID, entryID){
+    var theModel = this.collection.get(feedID).get("entries").get(entryID);
+    console.log(theModel);
+    var showView = new NR.Views.EntryShowView({ model: theModel });
     this.$rootEl.html(showView.render().$el);
-  }
+  },
 });
