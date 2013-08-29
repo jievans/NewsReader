@@ -6,9 +6,12 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by_username(params[:username])
-    if user.password_equals?(params[:password])
+    user = User.find_by_username(params[:user][:username])
+    if user.password_equals?(params[:user][:password])
       login_user(user)
+      puts "Current user is: #{current_user}"
+      puts "the User Session Token: #{user.session_token}"
+      puts "the session[:token] : #{session[:token]}"
       redirect_to feeds_url
     else
       flash[:notice] = "Credentials not correct"

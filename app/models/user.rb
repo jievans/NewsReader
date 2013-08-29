@@ -2,9 +2,20 @@ require 'bcrypt'
 class User < ActiveRecord::Base
   include BCrypt
   attr_accessible :password_digest, :username, :password
-  after_initialize :generate_token
+
+  before_validation :generate_token
+
+  has_many :subscriptions, :class_name => "Subscription",
+           :foreign_key => :user_id
+
+  has_many :feeds, :through => :subscriptions, :source => :feed
+
+  validates :username, :uniqueness => true
+
   def generate_token
+    puts "!!!!!!!!!!!!!! Regenerating Session Token!"
     self.session_token = SecureRandom.urlsafe_base64(16)
+    puts "User's session token is now #{self.session_token}"
   end
 
   def password_equals?(other_password)

@@ -1,6 +1,6 @@
 class FeedsController < ApplicationController
   def index
-    @feeds = Feed.all
+    @feeds = current_user.feeds
     respond_to do |format|
       format.html { render :index }
       format.json { render "index.rabl" }

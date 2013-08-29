@@ -13,6 +13,7 @@
   <% end %>
 
   <% if current_user %>
+    <b><%= current_user.username %> is logged in.</b>
     <%= button_to "Logout", session_url, :method => :delete %>
   <% end %>
 

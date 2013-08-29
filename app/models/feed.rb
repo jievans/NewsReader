@@ -3,6 +3,11 @@ class Feed < ActiveRecord::Base
 
   has_many :entries, :dependent => :destroy
 
+  has_many :subscriptions, :class_name => "Subscription",
+           :foreign_key => "feed_id"
+
+  has_many :users, :through => :subscriptions, :source => :user
+
   def self.find_or_create_by_url(url)
     feed = Feed.find_by_url(url)
     return feed if feed
