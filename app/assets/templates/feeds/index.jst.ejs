@@ -1,3 +1,12 @@
+<h3>Favorite Feeds</h3>
+<ul>
+  <% feeds.each(function(feed){ %>
+    <li>
+    <a href="#/feeds/<%= feed.escape('id') %>"><%= feed.escape('title') %></a>
+  <% })%>
+</ul>
+
+<h3>Decent Feeds</h3>
 <ul>
   <% feeds.each(function(feed){ %>
     <li>

@@ -1,5 +1,5 @@
 class Subscription < ActiveRecord::Base
-  attr_accessible :feed_id, :user_id
+  attr_accessible :feed_id, :user_id, :favorite
 
   validates :feed_id, :user_id, :presence => true
 

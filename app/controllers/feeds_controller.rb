@@ -1,6 +1,7 @@
 class FeedsController < ApplicationController
   def index
     @feeds = current_user.feeds
+    #how to pass in the favoriteness of the feeds?
     respond_to do |format|
       format.html { render :index }
       format.json { render "index.rabl" }

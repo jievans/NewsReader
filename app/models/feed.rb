@@ -1,4 +1,5 @@
 class Feed < ActiveRecord::Base
+  include SessionsHelper
   attr_accessible :title, :url
 
   has_many :entries, :dependent => :destroy

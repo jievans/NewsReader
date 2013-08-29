@@ -8,6 +8,6 @@
 ActiveRecord::Base.transaction do
   feeds = Feed.create([
     {title: 'cnn-world', url: 'http://rss.cnn.com/rss/cnn_world.rss'},
-    {title: 'cnn-tech', url: 'http://rss.cnn.com/rss/cnn_tech.rss'}
+    {title: 'cnn-tech', url: 'http://rss.cnn.com/rss/cnn_tech.rss'},
   ])
 end

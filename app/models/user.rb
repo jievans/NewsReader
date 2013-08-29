@@ -12,6 +12,10 @@ class User < ActiveRecord::Base
 
   validates :username, :uniqueness => true
 
+  def favorite_feed_ids
+    self.subscriptions.where("favorite = true").pluck("feed_id")
+  end
+
   def generate_token
     puts "!!!!!!!!!!!!!! Regenerating Session Token!"
     self.session_token = SecureRandom.urlsafe_base64(16)
