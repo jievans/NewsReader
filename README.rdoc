@@ -1,3 +1,3 @@
-== Welcome to New Reader Demo
+== NewsReader
 
-Good luck. Have fun.
+NewsReader is an RSS tracker implemented with Backbone.
